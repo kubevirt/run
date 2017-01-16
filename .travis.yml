@@ -1,6 +1,4 @@
 dist: trusty
-services:
-  - docker
 
 script:
  - bash -n $(ls -1 *.sh)
