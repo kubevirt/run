@@ -1,0 +1,4 @@
+dist: trusty
+
+script:
+ - bash -n $(ls -1 *.sh)
