@@ -28,6 +28,11 @@ install_dependencies() {
   fi
 }
 
+check_runtime() {
+  [[ -d "/var/tmp/kubevirt-demo" ]] && die "A previous checkout was detected, please enter /var/tmp/kubevirt-demo and run ./run-demo.sh or delet the directory and retry."
+  systemctl is-active libvirtd || die "libvirtd is not running. Please start and retry."
+}
+
 clone_and_run() {
   info "Cloning repository ..."
   capture "git clone -q https://github.com/kubevirt/demo.git kubevirt-demo"
@@ -42,5 +47,6 @@ title "Preparing to run the KubeVirt Demo"
 cd /var/tmp/
 check_pkcon
 install_dependencies
+check_runtime
 clone_and_run
 title "Demo has ended"
