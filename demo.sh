@@ -24,7 +24,7 @@ install_dependencies() {
       #capture "( pkcon -p get-packages --filter installed | grep ' $PKG' || ( info 'Installing $PKG' ; pkcon install -y $PKG ) )"
     done
   else
-    die "Unsupported operating system '$NAME' you are welcoe to provide patches to get it supported."
+    die "Unsupported operating system '$NAME'. We will be happy to merge patches to support your OS as well."
   fi
 }
 
