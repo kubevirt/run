@@ -16,8 +16,10 @@ install_dependencies() {
       fi
     done
   elif [[ "$ID" == "ubuntu" ]]; then
+    info "Please ensure to setup libguestfs correctly: http://libguestfs.org/guestfs-faq.1.html#downloading-installing-compiling-libguestfs"
+    info "Eventually you need to run this script using sudo"
     for PKG in qemu-system-x86 libguestfs-tools make git; do
-      if ! dpkg -s $PKG >&- 2>&-; then
+      if ! dpkg -s $PKG >/dev/null ; then
         die "Please install '$PKG'"
       fi
     done
