@@ -10,38 +10,40 @@ capture() { eval $@ 2>&1 > .capture.log && rm .capture.log || { cat .capture.log
 install_dependencies() {
   info "Checking dependencies"
   if [[ "$ID" == "fedora" ]]; then
-    for PKG in qemu-system-x86 libguestfs-tools-c expect; do
-      if ! pkcon --filter installed get-details $PKG >&- 2>&-; then
-        ask_continue "Continue and install $PKG?"
-        info "Installing $PKG"
-        capture pkcon install -y $PKG
+    for PKG in qemu-system-x86 libguestfs-tools-c make git; do
+      if ! dnf list installed $PKG >&- 2>&-; then
+        die "Please install '$PKG'"
       fi
-      #capture "( pkcon -p get-packages --filter installed | grep ' $PKG' || ( info 'Installing $PKG' ; pkcon install -y $PKG ) )"
+    done
+  elif [[ "$ID" == "ubuntu" ]]; then
+    for PKG in qemu-system-x86 libguestfs-tools make git; do
+      if ! dpkg -s $PKG >&- 2>&-; then
+        die "Please install '$PKG'"
+      fi
     done
   else
-    die "Unsupported operating system '$NAME'. We will be happy to merge patches to support your OS as well."
+    die "Unsupported operating system '$ID'. We will be happy to merge patches to support your OS as well."
   fi
-}
-
-check_runtime() {
-  [[ -d "/var/tmp/kubevirt-demo" ]] && die "A previous checkout was detected, please enter /var/tmp/kubevirt-demo and run ./run-demo.sh or delete the directory and retry."
-  systemctl is-active libvirtd || die "libvirtd is not running. Please start and retry."
 }
 
 clone_and_run() {
   info "Cloning repository ..."
-  capture "git clone -q https://github.com/kubevirt/demo.git kubevirt-demo"
-  cd kubevirt-demo
+  if [[ -d "/var/tmp/kubevirt-demo" ]]; then
+    info "Reusing existing clone"
+    cd kubevirt-demo
+    capture git pull
+  else
+    capture "git clone -q https://github.com/kubevirt/demo.git kubevirt-demo"
+    cd kubevirt-demo
+  fi
   info "Building the demo (this can take a while) - Downloads a few hundred MB of data (tail -f $(realpath $PWD/.capture.log))"
-  capture make build
+  capture make clean build
   info "All done - Running the demo"
   ./run-demo.sh
 }
 
 title "Preparing to run the KubeVirt Demo"
 cd /var/tmp/
-check_pkcon
 install_dependencies
-check_runtime
 clone_and_run
 title "Demo has ended"
