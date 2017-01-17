@@ -29,7 +29,7 @@ install_dependencies() {
 }
 
 check_runtime() {
-  [[ -d "/var/tmp/kubevirt-demo" ]] && die "A previous checkout was detected, please enter /var/tmp/kubevirt-demo and run ./run-demo.sh or delet the directory and retry."
+  [[ -d "/var/tmp/kubevirt-demo" ]] && die "A previous checkout was detected, please enter /var/tmp/kubevirt-demo and run ./run-demo.sh or delete the directory and retry."
   systemctl is-active libvirtd || die "libvirtd is not running. Please start and retry."
 }
 
