@@ -5,7 +5,7 @@
 die() { echo "FATAL: $@" >&2 ; exit 1 ; }
 title() { echo "== $@ ==" ; }
 info() { echo "INFO: $@" ; }
-ask_continue() { read -p "QUESTION: $@ (y/n): " CONT ; [[ "$CONT" =~ [nN] ]] && die "Aborting on request." ; }
+ask_continue() { read -u 1 -p "QUESTION: $@ (y/n): " CONT ; [[ "$CONT" =~ [nN] ]] && die "Aborting on request." ; }
 capture() { eval $@ 2>&1 > .capture.log && rm .capture.log || { cat .capture.log ; rm .capture.log ; die "Failed to run: $@" ; } ; }
 
 check_pkcon() {
