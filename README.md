@@ -16,6 +16,6 @@ presenting the user a ready-to-use KubeVirt environment.
 See <https://github.com/kubevirt/demo> for more details.
 
 ```
-curl http://run.kubevirt.io/demo.sh | bash
+curl run.kubevirt.io/demo.sh | bash
 
 ```
