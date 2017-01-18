@@ -11,7 +11,7 @@ install_dependencies() {
   info "Checking dependencies"
   if [[ "$ID" == "fedora" ]]; then
     for PKG in qemu-system-x86 libguestfs-tools-c make git; do
-      if ! dnf list installed $PKG >&- 2>&-; then
+      if ! dnf -q list installed $PKG ; then
         die "Please install '$PKG'"
       fi
     done
