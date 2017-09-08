@@ -5,13 +5,9 @@
 This repository is backing <http://run.kubevirt.io>. It provides a few
 scripts to ease different deployments of KubeVirt.
 
-## `demo.sh` -- Running a single host demo in QEMU
+## `demo.sh` -- Running a single host demo in minikube
 
-The following line will build a disk image where Kubernetes and Cockpit
-are getting installed. Finally KubeVirt is getting deployed on Kubernetes.
-
-Once the image build is done, QEMU is used to boot into the disk image
-presenting the user a ready-to-use KubeVirt environment.
+This will clone the KubeVirt Demo and launch it on your local minikube setup.
 
 See <https://github.com/kubevirt/demo> for more details.
 
