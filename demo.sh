@@ -15,6 +15,9 @@ clone_and_run() {
     capture "git clone -q https://github.com/kubevirt/demo.git run-kubevirt-demo"
     cd run-kubevirt-demo
   fi
+  if kubectl api-versions | grep -q kubevirt.io; then
+    die "KubeVirt is already deployed. Exiting."
+  fi
   info "Running the demo"
   export VERSION=v0.1.0
   kubectl create \
@@ -24,6 +27,6 @@ clone_and_run() {
   echo "https://github.com/kubevirt/demo#deploy-a-virtualmachine"
 }
 
-title "Preparing to run the KubeVirt Demo"
+title "Preparing to run the KubeVirt minikube demo"
 cd /var/tmp/
 clone_and_run
