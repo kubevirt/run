@@ -16,7 +16,12 @@ clone_and_run() {
     cd run-kubevirt-demo
   fi
   info "Running the demo"
-  ./run-demo.sh
+  export VERSION=v0.1.0
+  kubectl create \
+    -f https://github.com/kubevirt/kubevirt/releases/download/$VERSION/kubevirt.yaml \
+    -f manifests/demo-pv.yaml
+  echo "KubeVirt is now deployed, please follow the README for the next steps:"
+  echo "https://github.com/kubevirt/demo#deploy-a-virtualmachine"
 }
 
 title "Preparing to run the KubeVirt Demo"
