@@ -15,3 +15,15 @@ See <https://github.com/kubevirt/demo> for more details.
 curl run.kubevirt.io/demo.sh | bash
 
 ```
+
+## Releases -- Deploying a specific release
+
+Calling
+
+```
+kuectl apply -f run.kubevirt.io/v0.2.0.yaml
+```
+
+will deploy a given release to your existing cluster.
+
+**Please file bugs.**
