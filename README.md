@@ -21,7 +21,7 @@ curl run.kubevirt.io/demo.sh | bash
 Calling
 
 ```
-kuectl apply -f run.kubevirt.io/v0.2.0.yaml
+kuectl apply -f run.kubevirt.io/v/0.2.0.yaml
 ```
 
 will deploy a given release to your existing cluster.
