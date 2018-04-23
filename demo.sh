@@ -21,7 +21,7 @@ clone_and_run() {
   info "Running the demo"
   export VERSION=v0.3.0
   kubectl create \
-    -f https://github.com/kubevirt/kubevirt/releases/download/$VERSION/kubevirt.yaml \
+    -f https://github.com/kubevirt/kubevirt/releases/download/$VERSION/kubevirt.yaml
   echo "KubeVirt is now deployed, please follow the README for the next steps:"
   echo "https://github.com/kubevirt/demo#deploy-a-virtualmachine"
 }
