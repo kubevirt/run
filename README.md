@@ -12,7 +12,7 @@ This will clone the KubeVirt Demo and launch it on your local minikube setup.
 See <https://github.com/kubevirt/demo> for more details.
 
 ```
-curl run.kubevirt.io/demo.sh | bash
+curl -L run.kubevirt.io/demo.sh | bash
 
 ```
 
