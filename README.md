@@ -1,3 +1,5 @@
+**⚠️ This repository is deprecated and no longer maintained.**
+
 [![Build Status](https://travis-ci.org/kubevirt/run.svg?branch=master)](https://travis-ci.org/kubevirt/run)
 
 # KubeVirt Run
